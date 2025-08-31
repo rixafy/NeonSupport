@@ -1,66 +1,37 @@
 <idea-plugin>
-	<id>NEON support</id>
+    <id>org.nette.neon</id>
+    <name>Neon</name>
+    <vendor>Nette Community</vendor>
 
-	<name>NEON support</name>
+    <!-- http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges -->
+    <idea-version/>
 
-	<description>
-		<![CDATA[
-			<p>Here is <b>more advanced plugin for NEON that understands your Nette application</b>, helps with refactoring,
-			has advanced code completion, etc.</p>
+    <!-- http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products -->
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.jetbrains.php</depends>
 
-			<a href="https://plugins.jetbrains.com/plugin/18387-neon-nette-support">See more about new NEON Nette plugin</a>
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType name="Neon" implementationClass="org.nette.neon.file.NeonFileType" fieldName="INSTANCE"
+                  language="neon" extensions="neon" />
 
-			<hr>
+        <colorSettingsPage implementation="org.nette.neon.editor.NeonColorsPage" />
+        <lang.syntaxHighlighterFactory language="neon" implementationClass="org.nette.neon.editor.NeonSyntaxHighlighterFactory" />
+        <lang.commenter language="neon" implementationClass="org.nette.neon.NeonCommenter" />
+        <lang.psiStructureViewFactory language="neon" implementationClass="org.nette.neon.editor.NeonStructureViewFactory" />
 
-			<p>NEON (Nette Object Notation; <a href="https://ne-on.org">https://ne-on.org</a>) is a custom configuration language similar to YAML.</p>
+        <!-- code settings (indent, tabs?) -->
+        <codeStyleSettingsProvider implementation="org.nette.neon.editor.NeonCodeStyleSettingsProvider" />
+        <langCodeStyleSettingsProvider implementation="org.nette.neon.editor.NeonLanguageCodeStyleSettingsProvider" />
 
-			<p>Supported features</p>
+        <lang.parserDefinition language="neon" implementationClass="org.nette.neon.parser.NeonParserDefinition" />
+        <lang.fileViewProviderFactory language="neon" implementationClass="org.nette.neon.file.NeonFileViewProviderFactory" />
+        <lang.braceMatcher language="neon" implementationClass="org.nette.neon.NeonBraceMatcher" />
+        <lang.foldingBuilder language="neon" implementationClass="org.nette.neon.editor.NeonFoldingBuilder" />
+        <completion.contributor language="neon" implementationClass="org.nette.neon.completion.NeonCompletionContributor" />
+        <breadcrumbsInfoProvider implementation="org.nette.neon.editor.NeonBreadcrumbsInfoProvider" />
+        <enterHandlerDelegate implementation="org.nette.neon.editor.NeonEnterHandler"/>
 
-			<ul>
-				<li>Syntax highlighter</li>
-				<li>Basic class completion only</li>
-			</ul>
-		]]>
-	</description>
-
-	<vendor>juzna.cz, Matouš Němec</vendor>
-
-	<!-- http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges -->
-	<idea-version since-build="212.0" />
-
-	<!-- http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products -->
-	<depends>com.intellij.modules.lang</depends>
-	<depends>com.jetbrains.php</depends>
-
-	<resource-bundle>messages.NeonBundle</resource-bundle>
-
-	<extensions defaultExtensionNs="com.intellij">
-
-		<fileType name="Neon" implementationClass="cz.juzna.intellij.neon.file.NeonFileType" fieldName="INSTANCE"
-				  language="neon" extensions="neon" />
-
-		<colorSettingsPage implementation="cz.juzna.intellij.neon.editor.NeonColorsPage" />
-		<lang.syntaxHighlighterFactory language="neon" implementationClass="cz.juzna.intellij.neon.editor.NeonSyntaxHighlighterFactory" />
-		<lang.commenter language="neon" implementationClass="cz.juzna.intellij.neon.NeonCommenter" />
-		<lang.psiStructureViewFactory language="neon" implementationClass="cz.juzna.intellij.neon.editor.NeonStructureViewFactory" />
-
-		<!-- code settings (indent, tabs?) -->
-		<codeStyleSettingsProvider implementation="cz.juzna.intellij.neon.editor.NeonCodeStyleSettingsProvider" />
-		<langCodeStyleSettingsProvider implementation="cz.juzna.intellij.neon.editor.NeonLanguageCodeStyleSettingsProvider" />
-
-		<lang.parserDefinition language="neon" implementationClass="cz.juzna.intellij.neon.parser.NeonParserDefinition" />
-		<lang.fileViewProviderFactory language="neon" implementationClass="cz.juzna.intellij.neon.file.NeonFileViewProviderFactory" />
-		<lang.braceMatcher language="neon" implementationClass="cz.juzna.intellij.neon.NeonBraceMatcher" />
-		<lang.foldingBuilder language="neon" implementationClass="cz.juzna.intellij.neon.editor.NeonFoldingBuilder" />
-		<completion.contributor language="neon" implementationClass="cz.juzna.intellij.neon.completion.NeonCompletionContributor" />
-		<breadcrumbsInfoProvider implementation="cz.juzna.intellij.neon.editor.NeonBreadcrumbsInfoProvider" />
-		<enterHandlerDelegate implementation="cz.juzna.intellij.neon.editor.NeonEnterHandler"/>
-
-		<gotoDeclarationHandler implementation="cz.juzna.intellij.neon.reference.GoToClassHandler"/>
-		<annotator implementationClass="cz.juzna.intellij.neon.annotator.NeonAnnotator" language="neon"/>
-
-		<notificationGroup id="NEON Pro Group" displayType="STICKY_BALLOON" key="notification.group.name"/>
-
-		<postStartupActivity implementation="cz.juzna.intellij.neon.ide.NeonPluginListener"/>
-	</extensions>
+        <gotoDeclarationHandler implementation="org.nette.neon.reference.GoToClassHandler"/>
+        <annotator implementationClass="org.nette.neon.annotator.NeonAnnotator" language="neon"/>
+    </extensions>
 </idea-plugin>

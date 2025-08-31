@@ -1,11 +1,7 @@
 .DS_Store
 *.iml
 local.properties
-
 /src/main/gen
-/src/main/java/cz/juzna/intellij/neon/parser/_NeonLexer.flex
-/src/main/java/cz/juzna/intellij/neon/parser/_NeonParser2Lexer.flex
-
 /.idea
 /.gradle
 /build
