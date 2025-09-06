@@ -11,6 +11,7 @@ fun env(key: String) = providers.environmentVariable(key)
 
 plugins {
     kotlin("jvm") version "2.2.10"
+    id("java")
     id("org.jetbrains.intellij.platform") version "2.9.0"
     id("org.jetbrains.changelog") version "2.4.0"
     id("org.jetbrains.grammarkit") version "2022.3.2.2"
@@ -33,10 +34,10 @@ kotlin {
 
 sourceSets {
     main {
-        kotlin.srcDirs("src/main/gen")
+        java.srcDirs("src/main/gen")
     }
     test {
-        kotlin.srcDirs("src/main/gen")
+        java.srcDirs("src/main/gen")
     }
 }
 
