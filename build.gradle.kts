@@ -10,7 +10,6 @@ fun cfg(key: String) = providers.gradleProperty(key)
 fun env(key: String) = providers.environmentVariable(key)
 
 plugins {
-    id("java")
     kotlin("jvm") version "2.2.10"
     id("org.jetbrains.intellij.platform") version "2.9.0"
     id("org.jetbrains.changelog") version "2.4.0"
@@ -34,10 +33,10 @@ kotlin {
 
 sourceSets {
     main {
-        java.srcDirs("src/main/gen")
+        kotlin.srcDirs("src/main/gen")
     }
     test {
-        java.srcDirs("src/main/gen")
+        kotlin.srcDirs("src/main/gen")
     }
 }
 
