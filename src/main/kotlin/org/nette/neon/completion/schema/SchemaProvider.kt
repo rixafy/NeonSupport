@@ -7,7 +7,6 @@ import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.jetbrains.php.PhpIndex
 import com.jetbrains.php.lang.lexer.PhpTokenTypes
 import com.jetbrains.php.lang.psi.elements.*
-import gnu.trove.THashMap
 import java.io.File
 
 /**
@@ -27,8 +26,7 @@ class SchemaProvider {
      * Reads annotations and metadata and produces a cacheable map
      */
     private fun parseTypes(project: Project): MutableMap<String?, MutableCollection<String?>?> {
-        val map: MutableMap<String?, MutableCollection<String?>?> =
-            THashMap<String?, MutableCollection<String?>?>() // parent -> known-key[]
+        val map: MutableMap<String?, MutableCollection<String?>?> = mutableMapOf()
         val variables = getVariables(project, "CONFIG_KEYS")
         for (variable in variables) {
             if (NAMESPACE_NAME != variable.namespaceName) continue

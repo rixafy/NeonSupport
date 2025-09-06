@@ -8,7 +8,6 @@ import com.jetbrains.php.PhpIndex
 import com.jetbrains.php.completion.PhpLookupElement
 import com.jetbrains.php.lang.psi.elements.PhpClass
 import com.jetbrains.php.lang.psi.elements.PhpNamedElement
-import gnu.trove.THashSet
 import org.nette.neon.completion.insert.PhpReferenceInsertHandler.Companion.getInstance
 import org.nette.neon.psi.elements.NeonEntity
 import org.nette.neon.psi.elements.NeonScalar
@@ -28,7 +27,7 @@ class ClassCompletionProvider : CompletionProvider<CompletionParameters?>() {
             return
         }
 
-        val variants: MutableCollection<PhpNamedElement> = THashSet()
+        val variants: MutableCollection<PhpNamedElement> = mutableSetOf()
         val phpIndex = PhpIndex.getInstance(curr.project)
 
         var prefixMatcher = results.prefixMatcher
