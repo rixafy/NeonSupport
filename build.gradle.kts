@@ -30,10 +30,10 @@ kotlin {
 
 sourceSets {
     main {
-        java.srcDirs("src/main/gen")
+        kotlin.srcDirs("src/main/gen")
     }
     test {
-        java.srcDirs("src/main/gen")
+        kotlin.srcDirs("src/main/gen")
     }
 }
 
@@ -61,7 +61,7 @@ kover.xmlReport {
 }
 
 val generateNeonParser = task("generateLatteParser", GenerateParserTask::class) {
-    sourceFile.set(File("src/main/java/org/nette/neon/parser/NeonParser.bnf"))
+    sourceFile.set(File("src/main/kotlin/org/nette/neon/parser/NeonParser.bnf"))
     targetRootOutputDir.set(File("src/main/gen"))
     pathToParser.set("/org/nette/neon/parser/NeonParser.java")
     pathToPsiRoot.set("/org/nette/neon/psi")
@@ -69,7 +69,7 @@ val generateNeonParser = task("generateLatteParser", GenerateParserTask::class) 
 }
 
 val generateNeonContentLexer = task<GenerateLexerTask>("generateNeonContentLexer") {
-    sourceFile.set(File("src/main/java/org/nette/neon/lexer/neon.flex"))
+    sourceFile.set(File("src/main/kotlin/org/nette/neon/lexer/neon.flex"))
     targetOutputDir.set(File("src/main/gen/org/nette/neon/lexer"))
     purgeOldFiles.set(false)
 }
@@ -90,11 +90,6 @@ tasks {
             sourceCompatibility = it
             targetCompatibility = it
         }
-    }
-
-    withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "17"
-        kotlinOptions.freeCompilerArgs = listOf("-Xjvm-default=17")
     }
 
     withType<KoverXmlTask> {
