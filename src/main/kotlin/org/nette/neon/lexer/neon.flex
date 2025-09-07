@@ -40,17 +40,17 @@ WHITESPACE = [\t ]+
     {WHITESPACE} {
         return NEON_INDENT;
     }
-    [^] {
+    .|\n {
         retryInState(DEFAULT);
     }
 }
 
 <DEFAULT> {
-    "\"\"\"" / \n(([^])*\n)?[ \t]*"\"\"\"" {
+    "\"\"\"" / \n((\n|.)*\n)?[ \t]*"\"\"\"" {
         yybegin(IN_MULTILINE_DQ);
         return NEON_STRING;
     }
-    "'''" / \n(([^])*\n)?[ \t]*"'''" {
+    "'''" / \n((\n|.)*\n)?[ \t]*"'''" {
         yybegin(IN_MULTILINE_SQ);
         return NEON_STRING;
     }
@@ -98,18 +98,18 @@ WHITESPACE = [\t ]+
     [ \t]+[^#,:=\]})(\x00-\x20] {}
     ":" / [\x21-x28*\x2D-\x5C\x5E-\x7C~\xA0-\uFFFF] { }
     ":" { retryInState(DEFAULT); }
-    [^] { retryInState(DEFAULT); }
+    .|\n { retryInState(DEFAULT); }
 }
 
 <IN_MULTILINE_DQ> {
     \n[ \t]*"\"\"\"" {
         yybegin(DEFAULT);
     }
-    [^] {}
+    .|\n {}
 }
 <IN_MULTILINE_SQ> {
     \n[ \t]*"'''" {
         yybegin(DEFAULT);
     }
-    [^] {}
+    .|\n {}
 }

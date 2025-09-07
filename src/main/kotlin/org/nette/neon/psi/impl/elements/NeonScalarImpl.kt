@@ -1,9 +1,11 @@
 package org.nette.neon.psi.impl.elements
 
 import com.intellij.lang.ASTNode
+import com.intellij.psi.PsiReference
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import org.nette.neon.lexer.NeonTokenTypes
 import org.nette.neon.psi.elements.NeonScalar
+import org.nette.neon.reference.NeonScalarReference
 
 class NeonScalarImpl(astNode: ASTNode) : NeonPsiElementImpl(astNode), NeonScalar {
     override fun toString(): String {
@@ -21,6 +23,10 @@ class NeonScalarImpl(astNode: ASTNode) : NeonPsiElementImpl(astNode), NeonScalar
         }
 
     override fun getName(): String {
-        return this.valueText
+        return valueText
+    }
+
+    override fun getReference(): PsiReference {
+        return NeonScalarReference(this, com.intellij.openapi.util.TextRange(0, textLength), true, valueText)
     }
 }
