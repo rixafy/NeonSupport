@@ -10,11 +10,11 @@ fun cfg(key: String) = providers.gradleProperty(key)
 fun env(key: String) = providers.environmentVariable(key)
 
 plugins {
-    kotlin("jvm") version "2.2.10"
     id("java")
     id("org.jetbrains.intellij.platform") version "2.9.0"
     id("org.jetbrains.changelog") version "2.4.0"
     id("org.jetbrains.grammarkit") version "2022.3.2.2"
+    kotlin("jvm") version "2.2.10"
 }
 
 group = cfg("pluginGroup").get()
