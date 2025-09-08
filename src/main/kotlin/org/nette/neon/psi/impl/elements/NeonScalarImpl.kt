@@ -26,7 +26,9 @@ class NeonScalarImpl(astNode: ASTNode) : NeonPsiElementImpl(astNode), NeonScalar
         return valueText
     }
 
+    /*
+    TODO: Fix rename
     override fun getReference(): PsiReference {
         return NeonScalarReference(this, com.intellij.openapi.util.TextRange(0, textLength), true, valueText)
-    }
+    }*/
 }

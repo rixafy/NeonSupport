@@ -13,7 +13,7 @@ import org.nette.neon.lexer.NeonTokenTypes
 
 class NeonSyntaxHighlighter : SyntaxHighlighterBase() {
     override fun getHighlightingLexer(): Lexer {
-        return NeonHighlightingLexer(NeonLexer)
+        return NeonHighlightingLexer(NeonLexer())
     }
 
     override fun getTokenHighlights(type: IElementType?): Array<TextAttributesKey> {

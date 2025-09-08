@@ -21,7 +21,7 @@ interface NeonTokenTypes {
         @JvmField val NEON_RBRACE_SQUARE: IElementType = NeonTokenType("]")
 
         // brackets
-        @JvmField val closingBrackets: MutableMap<IElementType?, IElementType?> = ImmutableMap.of<IElementType?, IElementType?>(
+        @JvmField val closingBrackets: MutableMap<IElementType, IElementType> = ImmutableMap.of<IElementType, IElementType>(
             NEON_LPAREN, NEON_RPAREN,
             NEON_LBRACE_CURLY, NEON_RBRACE_CURLY,
             NEON_LBRACE_SQUARE, NEON_RBRACE_SQUARE

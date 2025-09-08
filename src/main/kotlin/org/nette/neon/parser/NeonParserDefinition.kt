@@ -16,7 +16,7 @@ import org.nette.neon.psi.impl.elements.*
 
 class NeonParserDefinition : ParserDefinition {
     override fun createLexer(project: Project?): Lexer {
-        return NeonLexer
+        return NeonLexer()
     }
 
     override fun createParser(project: Project?): PsiParser {

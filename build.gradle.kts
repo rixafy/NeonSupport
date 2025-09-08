@@ -43,8 +43,8 @@ sourceSets {
 
 dependencies {
     intellijPlatform {
-        create(providers.gradleProperty("platformType"), providers.gradleProperty("platformVersion"))
-        plugins(providers.gradleProperty("platformPlugins").map { it.split(',') })
+        cfg("intellij.localPath").orNull?.let { local(it) } ?: create(cfg("platformType"), cfg("platformVersion"))
+        plugins(cfg("platformPlugins").map { it.split(',') })
         testFramework(TestFrameworkType.Platform)
     }
 
@@ -100,7 +100,7 @@ val generateNeonParser = tasks.register<GenerateParserTask>("generateLatteParser
 }
 
 val generateNeonContentLexer = tasks.register<GenerateLexerTask>("generateNeonContentLexer") {
-    sourceFile.set(File("src/main/kotlin/org/nette/neon/lexer/neon.flex"))
+    sourceFile.set(File("src/main/kotlin/org/nette/neon/lexer/NeonLexer.flex"))
     targetOutputDir.set(File("src/main/gen/org/nette/neon/lexer"))
     purgeOldFiles.set(false)
 }

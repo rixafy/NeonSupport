@@ -8,7 +8,7 @@ import org.junit.Test
 class NeonHighlightingLexerTest : UsefulTestCase() {
     @Test
     fun testKeys() {
-        val l: Lexer = NeonHighlightingLexer(NeonLexer)
+        val l: Lexer = NeonHighlightingLexer(NeonLexer())
         l.start("key: val")
 
         assertEquals(NeonTokenTypes.NEON_KEY, l.tokenType) // this is important
@@ -40,7 +40,7 @@ class NeonHighlightingLexerTest : UsefulTestCase() {
 
     @Test
     fun testKeywords() {
-        val l: Lexer = NeonHighlightingLexer(NeonLexer)
+        val l: Lexer = NeonHighlightingLexer(NeonLexer())
         l.start("[true,off,TruE,\"true\"]")
 
         assertEquals(NeonTokenTypes.NEON_LBRACE_SQUARE, l.tokenType) // this is important

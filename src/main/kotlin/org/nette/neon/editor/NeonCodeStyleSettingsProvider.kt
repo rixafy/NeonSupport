@@ -3,12 +3,15 @@ package org.nette.neon.editor
 import com.intellij.application.options.CodeStyleAbstractConfigurable
 import com.intellij.application.options.CodeStyleAbstractPanel
 import com.intellij.application.options.TabbedLanguageCodeStylePanel
+import com.intellij.lang.Language
 import com.intellij.psi.codeStyle.CodeStyleConfigurable
 import com.intellij.psi.codeStyle.CodeStyleSettings
 import com.intellij.psi.codeStyle.CodeStyleSettingsProvider
 import org.nette.neon.NeonLanguage
 
 class NeonCodeStyleSettingsProvider : CodeStyleSettingsProvider() {
+    override fun getLanguage(): Language = NeonLanguage.INSTANCE
+
     @Deprecated("Deprecated in Java")
     override fun createConfigurable(settings: CodeStyleSettings, originalSetting: CodeStyleSettings): CodeStyleConfigurable {
         return object : CodeStyleAbstractConfigurable(settings, originalSetting, configurableDisplayName) {

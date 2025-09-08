@@ -7,7 +7,7 @@ import org.junit.Test
 
 class NeonLexer2Test : UsefulTestCase() {
     private fun createLexer(): Lexer {
-        return NeonLexer
+        return NeonLexer()
     }
 
     @Test

@@ -4,9 +4,9 @@ import com.intellij.lexer.MergingLexerAdapter
 import org.junit.Test
 import org.nette.neon.BaseLexerTestCase
 
-class LexerTest : BaseLexerTestCase("src/test/data/parser") {
+class LexerTest : BaseLexerTestCase("src/test/data/parser/") {
     override fun createLexer(): MergingLexerAdapter {
-        return NeonLexer
+        return NeonLexer()
     }
     
     @Test

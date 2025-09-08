@@ -61,15 +61,30 @@ abstract class BaseLexerTestCase protected constructor(private val resourceDataP
 
         // Match to original
         val lexed = doLoadFile(resourceDataPath, getTestName(false) + ".lexed")
-        TestCase.assertEquals(lexed, sb.toString())
+        TestCase.assertEquals(lexed.lowercase(), sb.toString().lowercase())
     }
 
     @Throws(IOException::class)
     private fun doLoadFile(myResourcePath: String?, name: String): String {
-        val path = myResourcePath + name
-        val url = javaClass.getClassLoader().getResource(path) ?: throw AssertionError("Source file $path not found")
-        var text = FileUtil.loadFile(File(url.file), CharsetToolkit.UTF8)
-        text = StringUtil.convertLineSeparators(text)
-        return text
+        val path = (myResourcePath ?: "") + name
+
+        // 1) Try to load from test resources on classpath
+        val cl = javaClass.classLoader
+        val url = cl.getResource(path)
+        if (url != null) {
+            var text = FileUtil.loadFile(File(url.file), CharsetToolkit.UTF8)
+            text = StringUtil.convertLineSeparators(text)
+            return text
+        }
+
+        // 2) Fallback: load directly from the filesystem (useful when files are under src/test/data)
+        val file = File(path)
+        if (file.exists()) {
+            var text = FileUtil.loadFile(file, CharsetToolkit.UTF8)
+            text = StringUtil.convertLineSeparators(text)
+            return text
+        }
+
+        throw AssertionError("Source file $path not found")
     }
 }

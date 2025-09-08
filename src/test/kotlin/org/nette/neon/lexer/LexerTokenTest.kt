@@ -6,7 +6,7 @@ import org.nette.neon.BaseLexerTestCase
 
 class LexerTokenTest : BaseLexerTestCase("data/psi/neonPsi/") {
     override fun createLexer(): MergingLexerAdapter {
-        return NeonLexer
+        return NeonLexer()
     }
 
     @Test
