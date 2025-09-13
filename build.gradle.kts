@@ -81,8 +81,8 @@ intellijPlatform {
 }
 
 grammarKit {
-    jflexRelease.set(cfg("jflexRelease"))
-    grammarKitRelease.set(cfg("grammarKitRelease"))
+    jflexRelease = cfg("jflexRelease")
+    grammarKitRelease = cfg("grammarKitRelease")
 }
 
 changelog {
@@ -92,17 +92,17 @@ changelog {
 }
 
 val generateNeonParser = tasks.register<GenerateParserTask>("generateLatteParser") {
-    sourceFile.set(File("src/main/kotlin/org/nette/neon/parser/NeonParser.bnf"))
-    targetRootOutputDir.set(File("src/main/gen"))
-    pathToParser.set("/org/nette/neon/parser/NeonParser.kt")
-    pathToPsiRoot.set("/org/nette/neon/psi")
-    purgeOldFiles.set(false)
+    sourceFile = File("src/main/kotlin/org/nette/neon/parser/NeonParser.bnf")
+    targetRootOutputDir = File("src/main/gen")
+    pathToParser = "/org/nette/neon/parser/NeonParser.kt"
+    pathToPsiRoot = "/org/nette/neon/psi"
+    purgeOldFiles = false
 }
 
 val generateNeonContentLexer = tasks.register<GenerateLexerTask>("generateNeonContentLexer") {
-    sourceFile.set(File("src/main/kotlin/org/nette/neon/lexer/NeonLexer.flex"))
-    targetOutputDir.set(File("src/main/gen/org/nette/neon/lexer"))
-    purgeOldFiles.set(false)
+    sourceFile = File("src/main/kotlin/org/nette/neon/lexer/NeonLexer.flex")
+    targetOutputDir = File("src/main/gen/org/nette/neon/lexer")
+    purgeOldFiles = false
 }
 
 tasks {
