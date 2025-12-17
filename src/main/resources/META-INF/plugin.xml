@@ -31,6 +31,7 @@
         <breadcrumbsInfoProvider implementation="org.nette.neon.editor.NeonBreadcrumbsInfoProvider" />
         <enterHandlerDelegate implementation="org.nette.neon.editor.NeonEnterHandler"/>
 
+        <gotoDeclarationHandler implementation="org.nette.neon.reference.GoToClassHandler"/>
         <annotator implementationClass="org.nette.neon.annotator.NeonAnnotator" language="neon"/>
     </extensions>
 </idea-plugin>
